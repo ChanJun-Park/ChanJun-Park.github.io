@@ -57,9 +57,9 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "ChanJun Park"
+  name   : "박찬준"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  bio    : "시간은 흐르는 것이 아니라 쌓이는 것이다."
   links:
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
