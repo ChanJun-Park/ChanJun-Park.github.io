@@ -1,6 +1,7 @@
 ---
 permalink: /about/
 title: "안녕하세요, 박찬준입니다."
+classes: wide
 ---
 
 - 이름 : 박찬준
