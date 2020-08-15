@@ -1,6 +1,7 @@
 ---
 title: "[컴퓨터네트워크] 1장. Introduction"
 date: 2020-08-15T15:34:30-04:00
+classes: wide
 categories:
   - Computer Network
 tags:
