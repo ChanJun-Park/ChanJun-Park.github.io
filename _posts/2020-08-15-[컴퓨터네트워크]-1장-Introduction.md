@@ -5,8 +5,7 @@ classes: wide
 categories:
   - Computer Network
 tags:
-  - 컴퓨터 네트워크
-  - Comptuter Network
+  - Computer Network
   - CS
 ---
 
