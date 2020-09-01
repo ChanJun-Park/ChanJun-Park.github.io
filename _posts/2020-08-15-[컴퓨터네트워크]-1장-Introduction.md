@@ -9,6 +9,9 @@ tags:
   - CS
 ---
 
+**Warning Notice:** 이 글은 **COMPUTER NETWORKING A TOP DOWN APPROACH - James F. Kurose, Keith W. Ross(Pearson)** 도서를 읽고 개인적인 학습을 위해서 정리한 내용입니다. 틀린 내용이 있을 수 있습니다.
+{: .notice--warning}
+
 컴퓨터 네트워크 과목에서는 한 컴퓨터에서 다른 컴퓨터로 데이터를 전송하고 수신하기 위한 방법과 컴퓨터와 네트워킹 장비들에서 일어나는 일들을 배운다. 1장에서는 컴퓨터 네트워크 과목을 학습하기에 앞서 이 과목에서 주로 공부하는 인터넷에 대한 개괄적인 내용을 살펴보고, 주요 용어들을 정리한다.
 
 ## 1.1 인터넷(Internet) 이란?
