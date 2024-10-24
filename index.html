@@ -6,22 +6,11 @@
         <title>딥링크로 앱 열기</title>
         <script>
             function openApp() {
-                var isLine = navigator.userAgent.toLowerCase().includes("line");
-                var target_url = "https://m.calendar.naver.com/calapp/main.nhn";
-                if (isLine) {
-                    alert("is line broswer");
-                    if (target_url.indexOf("?") !== -1) {
-                        target_url = target_url + "&openExternalBrowser=1";
-                    } else {
-                        target_url = target_url + "?openExternalBrowser=1";
-                    }
-                    alert(target_url);
-                }
-
+                var customUrlScheme = "navercal://"; // 커스텀 URL 스키마
                 var fallbackUrl =
                     "https://m.calendar.naver.com/calapp/main.nhn"; // 앱이 설치되지 않았을 때 열릴 웹 URL
 
-                window.location.href = target_url;
+                window.location.href = customUrlScheme;
 
                 // 딥링크가 실패했을 경우, 지정한 시간 후에 대체 URL로 이동
                 setTimeout(function () {
