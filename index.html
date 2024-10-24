@@ -6,6 +6,8 @@
         <title>딥링크로 앱 열기</title>
         <script>
             function openApp() {
+                var userAgent = navigator.userAgent.toLowerCase();
+                alert(userAgent);
                 var isLine = navigator.userAgent.toLowerCase().includes("line");
                 var target_url = "navercal://";
                 if (isLine) {
