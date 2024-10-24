@@ -6,16 +6,16 @@
         <title>딥링크로 앱 열기</title>
         <script>
             function openApp() {
-                var userAgent = navigator.userAgent.toLowerCase();
-                alert(userAgent);
                 var isLine = navigator.userAgent.toLowerCase().includes("line");
-                var target_url = "navercal://";
+                var target_url = "navercal://start";
                 if (isLine) {
+                    alert("is line broswer");
                     if (target_url.indexOf("?") !== -1) {
                         target_url = target_url + "&openExternalBrowser=1";
                     } else {
                         target_url = target_url + "?openExternalBrowser=1";
                     }
+                    alert(target_url);
                 }
 
                 var fallbackUrl =
