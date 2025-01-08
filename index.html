@@ -24,5 +24,11 @@
     </head>
     <body>
         <button id="openAppButton">앱 열기</button>
+        <span id="userAgent"></span>
     </body>
+    <script>
+        const userAgent = navigator.userAgent.toLowerCase();
+        const userAgentSpan = document.querySelector("#userAgent");
+        userAgentSpan.innerText = userAgent;
+    </script>
 </html>
