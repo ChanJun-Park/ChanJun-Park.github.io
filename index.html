@@ -6,7 +6,7 @@
         <title>딥링크로 앱 열기</title>
         <script>
             function openApp() {
-                const subpath = encodeURI("https://m.calendar.naver.com/calapp/main.nhn");
+                const subpath = encodeURI("calapp/main.nhn");
                 const customUrlScheme = `navercal://openwebcal?path=${subpath}`; // Naver Calendar Custom Scheme
                 const fallbackUrl =
                     "https://m.calendar.naver.com/calapp/main.nhn"; // Naver Calendar Applink Scheme
