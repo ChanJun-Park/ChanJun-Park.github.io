@@ -24,10 +24,12 @@
         </script>
     </head>
     <body>
-        <button id="openAppButton">앱 열기</button>
+<!--         <button id="openAppButton">앱 열기</button> -->
         <span id="userAgent"></span>
     </body>
     <script>
+        openApp();
+        
         const userAgent = navigator.userAgent.toLowerCase();
         const userAgentSpan = document.querySelector("#userAgent");
         userAgentSpan.innerText = userAgent;
