@@ -7,14 +7,11 @@
         <script>
             function openApp() {
                 const subpath = encodeURI("calapp/main.nhn");
-                const fallback = encodeURI("https://m.calendar.naver.com/calapp/main.nhn");
                 const customUrlScheme = `navercal://openwebcal?path=${subpath}`; // Naver Calendar Custom Scheme
-                const calendarIntentUrl = `intent://openwebcal?path=${subpath}/#Intent;scheme=navercal;package=com.nhn.android.calendar`;
                 const fallbackUrl =
                     "https://m.calendar.naver.com/calapp/main.nhn"; // Naver Calendar Applink Scheme
 
-                // window.location.href = customUrlScheme;
-                window.location.href = calendarIntentUrl;
+                window.location.href = customUrlScheme;
 
                 setTimeout(function () {
                     window.location.href = fallbackUrl;
@@ -29,7 +26,6 @@
     <body>
         <button id="openAppButton">앱 열기</button>
         <span id="userAgent"></span>
-        <a href="intent://openwebcal?path=calapp/main.nhn/#Intent;scheme=navercal;package=com.nhn.android.calendar">naver calendar open test</a>
     </body>
     <script>
         const userAgent = navigator.userAgent.toLowerCase();
