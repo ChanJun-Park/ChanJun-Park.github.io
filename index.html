@@ -9,7 +9,7 @@
                 const subpath = encodeURI("calapp/main.nhn");
                 const fallback = encodeURI("https://m.calendar.naver.com/calapp/main.nhn");
                 const customUrlScheme = `navercal://openwebcal?path=${subpath}`; // Naver Calendar Custom Scheme
-                const calendarIntentUrl = `intent://openwebcal?path=${subpath}/#Intent;scheme=navercal;package=com.nhn.android.calendar;S.browser_fallback_url=${fallback}`;
+                const calendarIntentUrl = `intent://openwebcal?path=${subpath}/#Intent;scheme=navercal;package=com.nhn.android.calendar`;
                 const fallbackUrl =
                     "https://m.calendar.naver.com/calapp/main.nhn"; // Naver Calendar Applink Scheme
 
