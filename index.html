@@ -6,20 +6,16 @@
         <title>딥링크로 앱 열기</title>
         <script>
             function openApp() {
-                const subpath = encodeURI("calapp/main.nhn");
-                const fallbackUrl =
-                    "https://m.calendar.naver.com/calapp/main.nhn"; // Naver Calendar Applink Scheme
-                const encodedFallbackUrl = encodeURI(fallbackUrl);
-                const customUrlScheme = `navercal://openwebcal?path=${subpath}`; // Naver Calendar Custom Scheme
-                const intentUrl = `intent://openwebcal?path=${subpath}#Intent;scheme=navercal;package=com.nhn.android.calendar.alpha;end`;
-                
+                var customUrlScheme = "navercal://"; // Naver Calendar Custom Scheme
+                //var fallbackUrl =
+                //    "https://m.calendar.naver.com/calapp/main.nhn"; // Naver Calendar Applink Scheme
+				var fallbackUrl = "market://details?id=com.nhn.android.calendar" // 앱 마켓 연동시
 
-                // window.location.href = customUrlScheme;
-                window.location.href = intentUrl;
+                window.location.href = customUrlScheme;
 
                 setTimeout(function () {
                     window.location.href = fallbackUrl;
-                }, 1500);
+                }, 2000);
             }
 
             document.addEventListener("DOMContentLoaded", function () {
@@ -28,14 +24,6 @@
         </script>
     </head>
     <body>
-<!--         <button id="openAppButton">앱 열기</button> -->
-        <span id="userAgent"></span>
+        <button id="openAppButton">앱 열기</button>
     </body>
-    <script>
-        openApp();
-        
-        const userAgent = navigator.userAgent.toLowerCase();
-        const userAgentSpan = document.querySelector("#userAgent");
-        userAgentSpan.innerText = userAgent;
-    </script>
 </html>
