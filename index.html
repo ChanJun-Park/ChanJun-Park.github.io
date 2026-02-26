@@ -1,60 +1,112 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>딥링크로 앱 열기</title>
-        <script>
-            function openApp() {
-                // var customUrlScheme = "navercal://"; // Naver Calendar Custom Scheme
-				// var endcodedURI = encodeURI("navercal://")
-				// var customUrlScheme = "intent://settings#Intent;scheme=navercal;package=com.nhn.android.calendar.alpha;end";
-				// var customUrlScheme = `https://m.calendar.naver.com/calapp/main.nhn`; // Naver Calendar Custom Scheme
-				var customUrlScheme = `https://m.map.naver.com/appLink.naver?app=Y&-pinType=site&%20appname=com.nhn.android.nmap&appMenu=location&pin%20Id=1751384363&menu=location&version=2#applink`; // Naver Calendar Custom Scheme
-                //var fallbackUrl =
-                //    "https://m.calendar.naver.com/calapp/main.nhn"; // Naver Calendar Applink Scheme
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>네이버</title>
+    <link rel="stylesheet" type="text/css" href="./css/bridge.20210915.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="content">
+        <div class="logo_box"><img src="https://s.pstatic.net/static/www/m-new/uit/2021/ico_sn_naver_app.png" width="66" height="66" alt="네이버"></div>
+        <h1 class="page_title">최신버전 네이버앱을<br>설치한 후 사용해주세요</h1>
+        <div class="redirect_box">
+            <a href="https://itunes.apple.com/kr/app/id393499958?mt=8" class="link_redirect type_install" id="MM_APPSTORE"><span class="name">네이버앱 설치하기</span></a>
+            <a href="https://m.naver.com" class="link_redirect" id="MM_FALLBACK_URL"><span class="name">모바일웹으로 열기</span></a>
+        </div>
+    </div>
+</div>
+<script>
+
+    function checkOS() {
+        const agent = window.navigator.userAgent.toLowerCase();
+        // android 가 아닌 것은 ios 로 취급
+        if (/android|linux armv81/.test(agent)) {
+            return 'android';
+        } else {
+            return 'ios';
+        }
+    }
+
+    function validateUrl(url) {
+        if (!url) {
+            return undefined;
+        }
+        try {
+            const parsed = new URL(url);
+            if (parsed.protocol === 'https:' && parsed.host.endsWith('.naver.com')) {
+                return url;
+            } else {
+                return undefined;
+            }
+        } catch (e) {
+            return undefined;
+        }
+    }
+
+    function setHistoryBack(scheme) {
+        if (!scheme.startsWith('naversearchapp://naversign') && !scheme.startsWith('naversearchthirdlogin://naversign')) {
+            return;
+        }
+        const fallbackBtn = document.getElementById('MM_FALLBACK_URL');
+        const fallbackBtnName = document.querySelector('#MM_FALLBACK_URL .name');
+        if (fallbackBtn && fallbackBtnName) {
+            fallbackBtnName.innerHTML = "돌아가기";
+            fallbackBtn.addEventListener('click', (evt) => {
+                evt.preventDefault();
+                window.history.back();
+            })
+        }
+        const install = document.getElementById('MM_APPSTORE')
+        if (install) {
+            install.addEventListener('click', (evt) => {
+                window.setTimeout(() => {
+                    window.history.back();
+                }, 100);
+            })
+        }
+    }
+
+    (() => {
+        const params = new URLSearchParams(window.location.search);
+        const fallbackUrl = validateUrl(params.get('fallbackUrl')) || 'https://m.naver.com';
+        if (fallbackUrl) {
+            document.querySelector('#MM_FALLBACK_URL').setAttribute('href', fallbackUrl);
+        }
+
+        const os = checkOS();        
+        const urlScheme = params.get('urlScheme') || 'naversearchapp://default?version=5';
+
+        setHistoryBack(urlScheme);
+
+        if (os === 'ios') {
+            document.getElementById('MM_APPSTORE').setAttribute("href", "https://itunes.apple.com/kr/app/id393499958?mt=8")
+            if (urlScheme.startsWith('naversearchapp://') && !window.history.state) {
+                window.history.replaceState({ already: 1 }, '',);
+                setTimeout(() => {
+                    window.location.href = urlScheme;
+                }, 250);
+            }
+        } else {
+            document.getElementById('MM_APPSTORE').setAttribute("href", "https://play.google.com/store/apps/details?id=com.nhn.android.search")
+            if (urlScheme.startsWith('naversearchapp://') && !window.history.state) {
+                window.history.replaceState({ already: 1 }, '',);
+
+                const actions = urlScheme.replace('naversearchapp://', '');
 				var intentUrl = "intent://settings#Intent;" +
                 "scheme=navercal;" +
                 "action=android.intent.action.VIEW;" +
                 "category=android.intent.category.BROWSABLE;" +
                 "package=com.nhn.android.calendar.alpha;" +
                 "end;";
-				var fallbackUrl = "market://details?id=com.nhn.android.calendar" // 앱 마켓 연동시
 
-				setTimeout(function () {
-					window.location.href = intentUrl;
-				}, 250);
-                // window.location.href = customUrlScheme;
-
-                // setTimeout(function () {
-                //     window.location.href = fallbackUrl;
-                // }, 2000);
+                setTimeout(() => {
+                    window.location.href = indentUrl;
+                }, 250);
             }
-
-			function openNaver() {
-				var customUrlScheme = `https://naverapp.m.naver.com/`;
-                
-				var fallbackUrl = "market://details?id=com.nhn.android.calendar" // 앱 마켓 연동시
-
-                window.location.href = customUrlScheme;
-
-                setTimeout(function () {
-                    window.location.href = fallbackUrl;
-                }, 2000);
-            }
-
-            document.addEventListener("DOMContentLoaded", function () {
-                document.getElementById("openAppButton").onclick = openApp;
-				document.getElementById("openNaverButton").onclick = openNaver;
-            });
-        </script>
-    </head>
-    <body>
-        <button id="openAppButton">앱 열기</button>
-		<button id="openNaverButton">네이버 앱 열기</button>
-		<a href="https://m.calendar.naver.com/calapp/main.nhn">링크 클릭 테스트</a>    
-		<p><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">유튜브 테스트</a></p>
-	    <p><a href="https://x.com/elonmusk">X(트위터) 테스트</a></p>
-	    <p><a href="https://www.instagram.com/instagram">인스타그램 테스트</a></p>
-    </body>
+        }
+    })();
+</script>
+</body>
 </html>
