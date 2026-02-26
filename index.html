@@ -22,13 +22,27 @@
                 }, 2000);
             }
 
+			function openNaver() {
+				var customUrlScheme = `https://naverapp.m.naver.com/`;
+                
+				var fallbackUrl = "market://details?id=com.nhn.android.calendar" // 앱 마켓 연동시
+
+                window.location.href = customUrlScheme;
+
+                setTimeout(function () {
+                    window.location.href = fallbackUrl;
+                }, 2000);
+            }
+
             document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("openAppButton").onclick = openApp;
+				document.getElementById("openNaverButton").onclick = openNaver;
             });
         </script>
     </head>
     <body>
         <button id="openAppButton">앱 열기</button>
+		<button id="openNaverButton">네이버 앱 열기</button>
 		<a href="https://m.calendar.naver.com/calapp/main.nhn">링크 클릭 테스트</a>    
 		<p><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">유튜브 테스트</a></p>
 	    <p><a href="https://x.com/elonmusk">X(트위터) 테스트</a></p>
