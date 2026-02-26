@@ -94,12 +94,7 @@
                 window.history.replaceState({ already: 1 }, '',);
 
                 const actions = urlScheme.replace('naversearchapp://', '');
-				var intentUrl = "intent://settings#Intent;" +
-                "scheme=navercal;" +
-                "action=android.intent.action.VIEW;" +
-                "category=android.intent.category.BROWSABLE;" +
-                "package=com.nhn.android.calendar.alpha;" +
-                "end;";
+                const indentUrl = `intent://${actions}#Intent;scheme=naversearchapp;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.search;end;`;
 
                 setTimeout(() => {
                     window.location.href = indentUrl;
